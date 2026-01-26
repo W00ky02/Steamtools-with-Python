@@ -7,7 +7,7 @@ I've created Steamtools with Python, which isn't Spyware.
 2. Click on "Manifest and Lua" and drag the files in.
 3. Restart Steam
 
-It shuold show the Game in your library.
+It should show the Game in your library.
 
 # Uninstall:
 
