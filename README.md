@@ -17,6 +17,8 @@ It should show the Game in your library.
 
 The Game should be gone.
 
+The steamtools.exe will show a few things on VirusTotal, but it's the same as the steamtools.py, which shows nothing.
+
 
 
 
