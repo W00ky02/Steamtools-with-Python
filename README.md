@@ -1,5 +1,5 @@
 # Steamtools-with-Python
-I've created Steamtools with Python, which isn't Spyware.
+Steamtools is a project, where you can upload Manifest Files for Steam Games. 
 
 # Tutorial:
 
