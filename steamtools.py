@@ -8,9 +8,6 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 import webbrowser
 
-# -----------------------------
-# Optional Drag & Drop Support
-# -----------------------------
 DND_AVAILABLE = False
 try:
     from tkinterdnd2 import DND_FILES, TkinterDnD
@@ -18,10 +15,6 @@ try:
 except Exception:
     DND_AVAILABLE = False
 
-
-# -----------------------------
-# Steam Path (Registry)
-# -----------------------------
 def find_steam_path():
     try:
         import winreg
@@ -50,10 +43,6 @@ def find_steam_path():
     default = r"C:\Program Files (x86)\Steam"
     return default if os.path.isdir(default) else None
 
-
-# -----------------------------
-# Minimal VDF / ACF parsing
-# -----------------------------
 _VDF_TOKEN = re.compile(r'"([^"]*)"|(\{)|(\})')
 
 def parse_vdf(text: str):
@@ -258,10 +247,6 @@ def restart_app():
             pass
         raise SystemExit
 
-
-# -----------------------------
-# App
-# -----------------------------
 class SteamtoolsApp:
     def __init__(self):
         self.steam_path = find_steam_path()
@@ -336,7 +321,6 @@ class SteamtoolsApp:
         self.pages["upload"] = self._page_upload(self.container)
         self.pages["uninstall"] = self._page_uninstall(self.container)
 
-    # ---------------- Menu Page ----------------
     def _page_menu(self, parent):
         frame = tk.Frame(parent, bg=self.BG)
         self.title(frame, "Steamtools")
@@ -358,7 +342,6 @@ class SteamtoolsApp:
 
         return frame
 
-    # ---------------- Upload Page ----------------
     def _page_upload(self, parent):
         frame = tk.Frame(parent, bg=self.BG)
         self.title(frame, "Steamtools")
@@ -424,7 +407,6 @@ class SteamtoolsApp:
 
         return frame
 
-    # ---------------- Uninstall Page ----------------
     def _page_uninstall(self, parent):
         frame = tk.Frame(parent, bg=self.BG)
         self.title(frame, "Steamtools")
@@ -493,7 +475,6 @@ class SteamtoolsApp:
         game_list.pack(side="left", fill="both", expand=True)
         game_scroll.config(command=game_list.yview)
 
-        # --- Files list ---
         lb_frame = tk.Frame(panel, bg=self.PANEL, highlightthickness=1, highlightbackground=self.BORDER)
         lb_frame.pack(padx=16, pady=0, fill="both", expand=True)
 
@@ -523,7 +504,6 @@ class SteamtoolsApp:
         action_row = tk.Frame(panel, bg=self.PANEL)
         action_row.pack(fill="x", padx=16, pady=(10, 16))
 
-        # ---------- Helpers ----------
         def ensure_games_index():
             if self.games_index is None:
                 status_var.set("Indexing installed games…")
@@ -688,3 +668,4 @@ class SteamtoolsApp:
 
 if __name__ == "__main__":
     SteamtoolsApp().run()
+
