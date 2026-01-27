@@ -18,6 +18,7 @@ It should show the Game in your library.
 The Game should be gone.
 
 !!The Game must be installed to be shown in the List!!
+
 You can delete the game files after uninstalling the Manifest & Lua files.
 
 
