@@ -526,11 +526,7 @@ class SteamtoolsApp:
             return all_lua
 
         def list_manifest_files_filtered():
-            """
-            Show ALL manifests that belong to selected game by depot-id prefix.
-            If depot matching yields 0 files (Steam ACF missing depots), fallback: show ALL manifests
-            so the user can still uninstall the existing ones.
-            """
+          
             try:
                 all_m = sorted([f for f in os.listdir(self.manifest_path) if f.lower().endswith(".manifest")])
             except Exception:
@@ -546,7 +542,6 @@ class SteamtoolsApp:
                 if m and m.group(1) in depots:
                     out.append(fn)
 
-            # FALLBACK: if nothing matched, show all manifests (prevents “missing games” like R.E.P.O)
             if not out:
                 return all_m
             return out
@@ -569,11 +564,7 @@ class SteamtoolsApp:
                 status_var.set(f"Found: {len(items)}")
 
         def refresh_game_list():
-            """
-            IMPORTANT CHANGE:
-            Show games based on LUA presence (appid.lua) so nothing disappears incorrectly.
-            This fixes games like R.E.P.O where depot ids might be missing in ACF.
-            """
+          
             games = ensure_games_index()
 
             game_list.delete(0, "end")
@@ -645,17 +636,14 @@ class SteamtoolsApp:
             refresh_files_list()
             refresh_game_list()
 
-        # Bindings
         lua_tab.bind("<Button-1>", lambda e: set_tab("lua"))
         man_tab.bind("<Button-1>", lambda e: set_tab("manifest"))
         game_list.bind("<<ListboxSelect>>", select_game_from_list)
 
-        # Buttons in action row
         self.btn(action_row, "Uninstall", uninstall_selected_one, danger=True).pack(side="left")
         self.btn(action_row, "Back", lambda: self.show("menu")).pack(side="left", padx=8)
         self.btn(action_row, "Restart Steam", lambda: restart_steam_silent(self.steam_path)).pack(side="left", padx=8)
 
-        # init
         set_tab("lua")
         refresh_game_list()
         refresh_files_list()
@@ -668,4 +656,5 @@ class SteamtoolsApp:
 
 if __name__ == "__main__":
     SteamtoolsApp().run()
+
 
